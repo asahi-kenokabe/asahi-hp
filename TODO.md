@@ -4,15 +4,11 @@
 
 ## 要判断・要作業(担当: 未着手)
 
-M. **アカウント移行(決定)**: `ken-okabe` アカウントでは干渉が発生するため、このプロジェクトは `asahi-kenokabe/asahi-hp` で行う。手順:
-   1. `asahi-kenokabe` 側で空の `asahi-hp` を作成(Private)。
-   2. `ken-okabe/asahi-hp` の `main` を全履歴ごと移す(`git push` でミラー)。
-   3. 新リポジトリで GitHub Pages を有効化(Source: GitHub Actions)し、デプロイ成功を確認。
-   4. 新しいセッションを `asahi-kenokabe/asahi-hp` をソースにして開始し、以後の作業はそちらで行う。
-   5. 移行後の確認が済んだら、`ken-okabe/asahi-hp` を削除する(ユーザー実施。削除前に新リポジトリのコミット履歴・ファイル数が一致することを確認)。
-   6. 文書中の `ken-okabe` 参照(仮URL `ken-okabe.github.io/asahi-hp` など)を `asahi-kenokabe` に更新する。
+M. **アカウント移行(完了・削除待ち)**: `ken-okabe` アカウントでは干渉が発生するため、このプロジェクトは `asahi-kenokabe/asahi-hp` で行う。
+   - 完了: 全履歴(10コミット・1,022ファイル、先頭 `03f77c7`)を `asahi-kenokabe/asahi-hp` の `main` に移行。文書中の `ken-okabe` 参照を更新。Pages 有効化後の再デプロイ結果は下記の検証記録を参照。
+   - 残り: 新サイトの公開確認後、`ken-okabe/asahi-hp` を削除する(ユーザー実施。エージェントは実行しない)。
 
-0. **【ドメイン接続時に必須】仮URL用ベースパス処理の撤去**: 仮URL(`https://ken-okabe.github.io/asahi-hp/`)で表示するため、`.github/workflows/deploy.yml` の「`node tools/prefix-base.mjs`(`BASE_PATH: /asahi-hp`)」ステップが、ビルド後にリンク・画像へ `/asahi-hp` を付けている。独自ドメイン(ルート配信)では**このステップを削除する**(残すとリンクが壊れる)。あわせて `CNAME` を追加する。なお `tools/prefix-base.mjs` 自体は無害なので残してよい。
+0. **【ドメイン接続時に必須】仮URL用ベースパス処理の撤去**: 仮URL(`https://asahi-kenokabe.github.io/asahi-hp/`)で表示するため、`.github/workflows/deploy.yml` の「`node tools/prefix-base.mjs`(`BASE_PATH: /asahi-hp`)」ステップが、ビルド後にリンク・画像へ `/asahi-hp` を付けている。独自ドメイン(ルート配信)では**このステップを削除する**(残すとリンクが壊れる)。あわせて `CNAME` を追加する。なお `tools/prefix-base.mjs` 自体は無害なので残してよい。
 
 1. **Googleフォームの作成**: 「お問合せ」「お見積り」の2種類。作成後、埋め込みURLを `src/components/ContactForm.astro` の `formUrl` に設定する(現在は電話案内を表示)。お見積り用ページ(`estimate.html` は元サイトで404のため、新規作成するか要判断)。
 2. **ヘッダー画像の差し替え**: `public/images/header.png.webp` は旧サービスのテンプレート由来(木目調の背景)。自前のロゴ・ヘッダーに差し替える。
