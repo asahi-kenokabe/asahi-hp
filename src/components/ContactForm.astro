@@ -1,0 +1,17 @@
+---
+import site from '../data/site.json';
+// Googleフォームの埋め込みURL。作成後にここへ設定する(決定事項: フォームはGoogleフォーム)。
+const formUrl = '';
+---
+<div class="contact-form" data-block="contact_form">
+  <h2>メールでのお問合せ</h2>
+  {formUrl ? (
+    <iframe src={formUrl} title="お問合せフォーム" loading="lazy" height="1200"></iframe>
+  ) : (
+    <p class="notice">
+      お問合せフォームは準備中です。お手数ですが、お電話にてご連絡ください。<br />
+      <a class="tel-big" href={`tel:${site.tel}`}>{site.tel}</a>
+    </p>
+  )}
+  <p>※営業目的のメールはお控えください。</p>
+</div>

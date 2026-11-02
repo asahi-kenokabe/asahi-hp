@@ -23,3 +23,9 @@
 
 - すべてのフェーズで、結果が正しく完全であることをダブルチェックしてから次に進む。取りこぼし、欠落、偽の成功(HTTP 200 で HTML のエラーページが返る等)を放置しない。
 - 検証した内容と結果(未解決の項目を含む)は、該当するドキュメントに記録する。
+
+## 開発コマンド
+
+- `npm run build`: ビルド(`dist/` に出力)。`npm run dev`: 開発サーバー。
+- 元サイトの本文を再抽出する場合: `python3 -I tools/extract.py`(`backup/original` が入力)。検証は `npm run build` 後に `python3 -I tools/verify.py`。
+- 生成物の詳細・検証結果・未対応事項は `extraction-report.md` を参照。
