@@ -5,7 +5,9 @@
 ## 要判断・要作業(担当: 未着手)
 
 M. **アカウント移行(完了・削除待ち)**: `ken-okabe` アカウントでは干渉が発生するため、このプロジェクトは `asahi-kenokabe/asahi-hp` で行う。
-   - 完了: 全履歴(10コミット・1,022ファイル、先頭 `03f77c7`)を `asahi-kenokabe/asahi-hp` の `main` に移行。文書中の `ken-okabe` 参照を更新。Pages 有効化後の再デプロイ結果は下記の検証記録を参照。
+   - 完了: 全履歴(10コミット・1,022ファイル、先頭 `03f77c7`)を `asahi-kenokabe/asahi-hp` の `main` に移行。文書中の `ken-okabe` 参照を更新。Pages 有効化後、2026-11-02 に再デプロイ成功(Actions「Deploy to GitHub Pages」)。
+   - 検証(`https://asahi-kenokabe.github.io/asahi-hp/` をトップからクロール): 到達ページ64、画像・CSS等のユニークURL 258、すべて HTTP 200 かつ HTML エラーページ(soft 404)ではないことを確認。不達0。生成HTMLに `dekiteru` 参照0。
+   - 未解決: 検証時点でも、API 上のデフォルトブランチ表示は `claude/great-hamilton-r43709` のまま(GitHub 側で `main` に変更後の反映か要確認)。また、Pages の Source を切り替えた際に Jekyll の「pages build and deployment」が1回失敗した(Source が GitHub Actions なら無視してよい。要確認)。
    - 残り: 新サイトの公開確認後、`ken-okabe/asahi-hp` を削除する(ユーザー実施。エージェントは実行しない)。
 
 0. **【ドメイン接続時に必須】仮URL用ベースパス処理の撤去**: 仮URL(`https://asahi-kenokabe.github.io/asahi-hp/`)で表示するため、`.github/workflows/deploy.yml` の「`node tools/prefix-base.mjs`(`BASE_PATH: /asahi-hp`)」ステップが、ビルド後にリンク・画像へ `/asahi-hp` を付けている。独自ドメイン(ルート配信)では**このステップを削除する**(残すとリンクが壊れる)。あわせて `CNAME` を追加する。なお `tools/prefix-base.mjs` 自体は無害なので残してよい。
